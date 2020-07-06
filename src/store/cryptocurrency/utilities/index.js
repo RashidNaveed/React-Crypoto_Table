@@ -1,0 +1,1 @@
+export { getCryptoData } from './reducerFunction';

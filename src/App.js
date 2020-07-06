@@ -1,26 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { connect } from 'react-redux';
+import * as actionCreator from './store/cryptocurrency/index';
+import CryptoData from './containers/CryptoData/CryptoData';
 
-function App() {
+function App(props) {
+  React.useEffect(() => {
+    props.onStartApplication();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <CryptoData />
     </div>
   );
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onStartApplication: () => dispatch(actionCreator.fetchDataFromApi()),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(App);

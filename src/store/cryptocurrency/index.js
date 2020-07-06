@@ -1,0 +1,1 @@
+export { fetchDataFromApi } from './actionCreators';
