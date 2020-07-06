@@ -4,12 +4,40 @@ import Tables from '../../components/UI/Table/Table';
 
 const CryptoData = (props) => {
   const columns = [
-    { headerName: 'RANK', field: 'rank' },
-    { headerName: 'COIN', field: 'name' },
-    { headerName: 'PRICE', field: 'price' },
-    { headerName: 'MKT-CAP', field: 'marketCap' },
-    { headerName: 'CHG.1H', field: 'priceChange1h' },
-    { headerName: 'CHG.24H', field: 'priceChange24h' },
+    {
+      headerName: 'RANK',
+      field: 'rank',
+      width: 75,
+      suppressSizeToFit: true,
+    },
+    {
+      headerName: 'COIN',
+      field: 'name',
+      width: 200,
+    },
+    {
+      headerName: 'PRICE',
+      field: 'price',
+      width: 90,
+      minWidth: 50,
+      maxWidth: 100,
+    },
+    {
+      headerName: 'MKT-CAP',
+      field: 'marketCap',
+      width: 100,
+    },
+    {
+      headerName: 'CHG.1H',
+      field: 'priceChange1h',
+      width: 90,
+    },
+    {
+      headerName: 'CHG.24H',
+      field: 'priceChange24h',
+      width: 100,
+      resizable: true,
+    },
   ];
   const rows = [];
   props.apiData.map((data) => {

@@ -11,12 +11,17 @@ const Tables = (props) => {
       className='ag-theme-alpine'
       style={{
         width: '80%',
-        height: '600px',
+        height: '520px',
         marginLeft: '10%',
         marginRight: '10%',
         marginTop: '2%',
       }}>
-      <AgGridReact columnDefs={columns} rowData={rows}></AgGridReact>
+      <AgGridReact
+        columnDefs={columns}
+        rowData={rows}
+        pagination={true}
+        paginationAutoPageSize={true}
+        viewportRowModelPageSize={1}></AgGridReact>
     </div>
   );
 };
