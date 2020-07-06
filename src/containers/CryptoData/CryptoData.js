@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import Tables from '../../components/UI/Table/Table';
 
 const CryptoData = (props) => {
-  //   console.log('data', props.apiData);
   const columns = [
     { headerName: 'RANK', field: 'rank' },
     { headerName: 'COIN', field: 'name' },
@@ -14,7 +13,7 @@ const CryptoData = (props) => {
   ];
   const rows = [];
   props.apiData.map((data) => {
-    rows.push({
+    return rows.push({
       id: data.id,
       symbol: data.symbol,
       name: data.name,

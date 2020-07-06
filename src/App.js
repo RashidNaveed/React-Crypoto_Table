@@ -5,9 +5,10 @@ import * as actionCreator from './store/cryptocurrency/index';
 import CryptoData from './containers/CryptoData/CryptoData';
 
 function App(props) {
+  const { onStartApplication } = props;
   React.useEffect(() => {
-    props.onStartApplication();
-  }, []);
+    onStartApplication();
+  }, [onStartApplication]);
 
   return (
     <div className='App'>
