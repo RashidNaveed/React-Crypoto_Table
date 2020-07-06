@@ -53,6 +53,7 @@ const CryptoData = (props) => {
       priceChange24h: data.price_change_percentage_24h,
     });
   });
+  rows.sort((a, b) => (a.rank > b.rank ? 1 : -1));
   console.log('Rows', rows);
 
   return (
