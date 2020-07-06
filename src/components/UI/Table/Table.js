@@ -10,10 +10,10 @@ const Tables = (props) => {
     <div
       className='ag-theme-alpine'
       style={{
-        width: '80%',
+        width: '60%',
         height: '520px',
-        marginLeft: '10%',
-        marginRight: '10%',
+        marginLeft: '20%',
+        marginRight: '20%',
         marginTop: '2%',
       }}>
       <AgGridReact

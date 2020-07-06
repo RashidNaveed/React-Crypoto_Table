@@ -3,24 +3,41 @@ import { connect } from 'react-redux';
 import Tables from '../../components/UI/Table/Table';
 
 const CryptoData = (props) => {
+  const coinCellRenderer = (params) => {
+    let image = `<img
+        width="30" height="35" align="left"
+        src=${params.data.image}
+        alt=${params.data.name}
+      />`;
+
+    return (
+      '<span >' +
+      image +
+      '</span>' +
+      ' ' +
+      '<span>' +
+      params.data.name +
+      ' ' +
+      params.data.symbol +
+      '</span>'
+    );
+  };
   const columns = [
     {
       headerName: 'RANK',
       field: 'rank',
-      width: 75,
+      width: 74,
       suppressSizeToFit: true,
     },
     {
       headerName: 'COIN',
-      field: 'name',
+      cellRenderer: coinCellRenderer,
       width: 200,
     },
     {
       headerName: 'PRICE',
       field: 'price',
-      width: 90,
-      minWidth: 50,
-      maxWidth: 100,
+      width: 100,
     },
     {
       headerName: 'MKT-CAP',
@@ -36,21 +53,35 @@ const CryptoData = (props) => {
       headerName: 'CHG.24H',
       field: 'priceChange24h',
       width: 100,
-      resizable: true,
+    },
+    {
+      headerName: 'VOLUME',
+      field: 'totalVolume',
+      width: 100,
     },
   ];
   const rows = [];
+  console.log('data', props.apiData);
   props.apiData.map((data) => {
     return rows.push({
       id: data.id,
       symbol: data.symbol,
       name: data.name,
       image: data.image,
-      price: data.current_price,
+      price: `$ ${data.current_price.toFixed(2)}`,
       marketCap: data.market_cap,
       rank: data.market_cap_rank,
-      priceChange1h: data.price_change_percentage_1h_in_currency,
-      priceChange24h: data.price_change_percentage_24h,
+      priceChange1h: `${
+        data.price_change_percentage_1h_in_currency
+          ? data.price_change_percentage_1h_in_currency.toFixed(2)
+          : 'Null'
+      }%`,
+      priceChange24h: `${
+        data.price_change_percentage_24h
+          ? data.price_change_percentage_24h.toFixed(2)
+          : 'Null'
+      }%`,
+      totalVolume: data.total_volume,
     });
   });
   rows.sort((a, b) => (a.rank > b.rank ? 1 : -1));
