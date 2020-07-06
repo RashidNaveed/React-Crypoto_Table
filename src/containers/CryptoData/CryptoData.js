@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Tables from '../../components/UI/Table/Table';
+import { currencyConvert } from '../../utility/currencyConvert';
 
 const CryptoData = (props) => {
   const coinCellRenderer = (params) => {
@@ -61,15 +62,14 @@ const CryptoData = (props) => {
     },
   ];
   const rows = [];
-  console.log('data', props.apiData);
   props.apiData.map((data) => {
     return rows.push({
       id: data.id,
       symbol: data.symbol,
       name: data.name,
       image: data.image,
-      price: `$ ${data.current_price.toFixed(2)}`,
-      marketCap: data.market_cap,
+      price: `$ ${currencyConvert(data.current_price)}`,
+      marketCap: currencyConvert(data.market_cap),
       rank: data.market_cap_rank,
       priceChange1h: `${
         data.price_change_percentage_1h_in_currency
@@ -81,11 +81,10 @@ const CryptoData = (props) => {
           ? data.price_change_percentage_24h.toFixed(2)
           : 'Null'
       }%`,
-      totalVolume: data.total_volume,
+      totalVolume: currencyConvert(data.total_volume),
     });
   });
   rows.sort((a, b) => (a.rank > b.rank ? 1 : -1));
-  console.log('Rows', rows);
 
   return (
     <div>
